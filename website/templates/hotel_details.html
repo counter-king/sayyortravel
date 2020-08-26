@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Hotel details{% endblock %}
+
+
+{% block content %}
+	<div class="hero-wrap js-fullheight" style="background-image: url({% static 'website/images/bg_14.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span><span class="mr-2"><a href="{% url 'hotel' %}">Hotels</a></span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{hotelpost.hotel_name}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+	<div class="container">
+    	<br><br>
+    
+    	
+    	<p>{{hotelpost.hotel_description}}</p>
+    	<p><b>Distance to the city center:</b> {{hotelpost.hotel_to_center}}</p>
+    	<p><b>Distance to the airport:</b> {{hotelpost.hotel_to_airport}}</p>
+    	<p><b>Near sightseeings:</b> {{hotelpost.hotel_near_sightseeings}}</p>
+    </div>
+
+    <br><br>
+
+    <!-- Swiper -->
+  <div class="swiper-container gallery-top">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image.url}})"></div>
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image2.url}})"></div>
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image3.url}})"></div>
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image4.url}})"></div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+  </div>
+  <div class="swiper-container gallery-thumbs">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image.url}})"></div>
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image2.url}})"></div>
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image3.url}})"></div>
+      <div class="swiper-slide" style="background-image:url({{hotelpost.hotel_image4.url}})"></div>
+    </div>
+  </div>
+
+  <br><br>
+
+
+  <script src="{% static 'website/js/bundle.js' %}"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper('.gallery-top', {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: galleryThumbs
+      }
+    });
+  </script>
+
+
+
+    
+    
+
+{% endblock %}
